@@ -27,8 +27,21 @@ def upload(bucket_name, object_name):
 		print("The file was not found")
 		return False
 	except NoCredentialsError:
-		print("Credentials not available")
-		return False
+		return "Credentials not available"
+
+
+def upload_version_2(bucket_name, object_name_abs_path):
+	try:
+		print(object_name_abs_path)
+		extension = object_name_abs_path.rsplit('.', 1)[-1]
+		s3_file_path = "{0}.{1}".format(uuid.uuid1(), extension)
+		s3.upload_file(os.path.abspath(object_name_abs_path), bucket_name, s3_file_path)
+		print('Upload successful')
+		return s3_file_path
+	except FileNotFoundError:
+		return "The file was not found"
+	except NoCredentialsError:
+		return "Credentials not available"
 
 
 def delete(bucket_name, s3_file_path):
@@ -47,6 +60,8 @@ def download(bucket_name, s3_file_path):
 
 
 if __name__ == '__main__':
-	result = upload('cestlavie-nataly-storage', 'bridge.jpg')
-	print(result)
-	# delete('cestlavie-nataly-storage', '737a5f80-8f4f-11ed-bd4c-acde48001122.jpg')
+	# result = upload('cestlavie-nataly-storage', 'bridge.jpg')
+	result_v2 = upload_version_2('cestlavie-nataly-storage', '/Users/macbookpro/PycharmProjects/cestlavie_nataly/blog/views/bridge.jpg')
+	# print(result)
+	print(result_v2)
+# delete('cestlavie-nataly-storage', '737a5f80-8f4f-11ed-bd4c-acde48001122.jpg')
