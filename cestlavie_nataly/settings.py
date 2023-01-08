@@ -29,6 +29,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+		'blog',
 		'django.contrib.admin',
 		'django.contrib.auth',
 		'django.contrib.contenttypes',
@@ -115,6 +116,12 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+AWS_ACCESS_KEY_ID = 'YCAJEex1zWQPUlEP6wzwt3NSm'
+AWS_SECRET_ACCESS_KEY = 'YCM832Yu_18vPCs2h1oGz4hTru4OO6o85ir1cof1'
+AWS_DEFAULT_REGION = 'ru-central1'
+ENDPOINT_URL = 'https://storage.yandexcloud.net'
+BUCKET_NAME = 'cestlavie-nataly-storage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
