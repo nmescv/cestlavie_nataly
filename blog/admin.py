@@ -4,7 +4,7 @@ from pathlib import Path
 from django.contrib import admin
 
 from blog.views.storage import upload, delete
-from blog.models import Section
+from blog.models import Section, Post
 from blog.forms import SectionForm
 
 
@@ -12,8 +12,8 @@ from blog.forms import SectionForm
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
 
-	list_display = ('name', 'image_path', 'created_at', 'updated_at')
-	fields = ('name', 'image_path')
+	list_display = ('name', 'avatar', 'created_at', 'updated_at')
+	fields = ('name', 'avatar')
 
 	# class Meta:
 	# 	form = SectionForm
@@ -22,3 +22,10 @@ class SectionAdmin(admin.ModelAdmin):
 	# 	if request.method == 'POST':
 	# 		print(obj.name)
 	# 		print(Path(str(obj.image_path)).resolve())
+
+
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+
+	list_display = ('title', 'annotation', 'avatar', 'section', 'created_at', 'updated_at')
+	fields = ('title', 'annotation', 'avatar', 'section')

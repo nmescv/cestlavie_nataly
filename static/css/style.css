@@ -1,10 +1,15 @@
 .section-image {
     background-repeat: no-repeat;
-    height:100%;
-    width:100%
+    height: 100%;
+    width: 100%
 }
 
 .section-name {
-    margin: auto;
     text-align: center;
+}
+
+.publication-image {
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
 }
