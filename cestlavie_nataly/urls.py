@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import static
 from django.urls import path
 
-from blog.views.publications import index, publications, post, about
+from blog.views.publications import home, publications, post, about
 from cestlavie_nataly import settings
 
 urlpatterns = [
@@ -25,5 +25,8 @@ urlpatterns = [
 		path('publications/', publications),
 		path('post/', post),
 		path('about', about),
-		path('', index)
+		path('', home)
 		]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -30,14 +30,13 @@ def upload(bucket_name, object_name):
 		return "Credentials not available"
 
 
-def upload_version_2(bucket_name, object_name_abs_path):
+def upload_version_2(bucket_name, object_name_path):
 	try:
-		print(object_name_abs_path)
-		extension = object_name_abs_path.rsplit('.', 1)[-1]
+		extension = object_name_path.rsplit('.', 1)[-1]
 		s3_file_path = "{0}.{1}".format(uuid.uuid1(), extension)
-		s3.upload_file(os.path.abspath(object_name_abs_path), bucket_name, s3_file_path)
+		s3.upload_file(os.path.abspath(object_name_path), bucket_name, s3_file_path)
 		print('Upload successful')
-		return s3_file_path
+		return "{0}/{1}/{2}".format(settings.ENDPOINT_URL, settings.BUCKET_NAME, s3_file_path)
 	except FileNotFoundError:
 		return "The file was not found"
 	except NoCredentialsError:

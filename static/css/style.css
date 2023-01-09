@@ -1,0 +1,10 @@
+.section-image {
+    background-repeat: no-repeat;
+    height:100%;
+    width:100%
+}
+
+.section-name {
+    margin: auto;
+    text-align: center;
+}

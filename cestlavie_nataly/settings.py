@@ -117,6 +117,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 AWS_ACCESS_KEY_ID = 'YCAJEex1zWQPUlEP6wzwt3NSm'
 AWS_SECRET_ACCESS_KEY = 'YCM832Yu_18vPCs2h1oGz4hTru4OO6o85ir1cof1'
 AWS_DEFAULT_REGION = 'ru-central1'

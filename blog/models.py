@@ -1,12 +1,7 @@
-import os
-
-from django.core.validators import FileExtensionValidator
 from django.db import models
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-from blog.views.storage import upload, delete, upload_version_2
 
-
+from blog.views.storage import upload_version_2
 # Create your models here.
 from cestlavie_nataly import settings
 
@@ -15,7 +10,7 @@ class Section(models.Model):
 	name = models.CharField(max_length=100, null=False, blank=False, unique=True, verbose_name='Название')
 	# image = models.FileField(null=True, verbose_name='Картинка',
 	# 						 validators=[FileExtensionValidator(allowed_extensions=['gif','png','jpg', 'jpeg'])])
-	image_path = models.ImageField(null=True, verbose_name='Картинка')
+	image_path = models.ImageField(upload_to='media/', null=True, verbose_name='Картинка')
 	created_at = models.DateTimeField(blank=True, null=True, verbose_name='Дата создания')
 	updated_at = models.DateTimeField(blank=True, null=True, verbose_name='Дата обновления')
 
@@ -29,6 +24,7 @@ class Section(models.Model):
 		return self.name
 
 	def save(self, *args, **kwargs):
+		print(self.image_path)
 		try:
 			section = Section.objects.get(id=self.id)
 			self.updated_at = timezone.now()
@@ -39,9 +35,10 @@ class Section(models.Model):
 			now = timezone.now()
 			self.created_at = now
 			self.updated_at = now
-			self.image_path = upload_version_2(settings.BUCKET_NAME, os.path.abspath(str(self.image_path)))
+			# self.image_path = upload_version_2(settings.BUCKET_NAME, str(self.image_path))
 			super(Section, self).save(*args, **kwargs)
-
+			# section = Section.objects.get(id=self.id)
+			# upload_version_2(settings.BUCKET_NAME, str(section.image_path))
 
 # class Post(models.Model):
 # 	title = models.CharField(max_length=255, null=False, blank=False, verbose_name='Название')

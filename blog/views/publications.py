@@ -1,9 +1,14 @@
 from django.shortcuts import render
+from blog.models import Section
 
 
 # Create your views here.
-def index(request):
-	return render(request, 'blog/home.html')
+def home(request):
+	sections = Section.objects.all()
+	data = {
+			'sections' : sections
+			}
+	return render(request, 'blog/home.html', data)
 
 
 def publications(request):
