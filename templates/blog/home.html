@@ -54,7 +54,7 @@
                         <h4 class="card-text">{{ publication.annotation }}</h4>
                         <div class="metafooter">
                             <div class="wrapfooter">
-						<span class="post-date">22 July 2017</span><span class="dot"></span>
+						<span class="post-date">{{ publication.created_at|date:'H:i d.m.Y' }}</span>
                                 <span class="post-read-more"><a href="post.html" title="Read Story"><svg
                                         class="svgIcon-use"
                                         width="25"

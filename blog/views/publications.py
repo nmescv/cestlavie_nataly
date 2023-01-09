@@ -5,7 +5,7 @@ from blog.models import Section, Post
 # Create your views here.
 def home(request):
 	sections = Section.objects.all()
-	posts = Post.objects.all().order_by('created_at')[:6]
+	posts = Post.objects.all().order_by('-created_at')[:6]
 	data = {
 			'sections' : sections,
 			'publications': posts
