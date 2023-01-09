@@ -12,13 +12,19 @@ def home(request):
 			}
 	return render(request, 'blog/home.html', data)
 
+# def publications_by_section(request, category_id):
+
 
 def publications(request):
 	return render(request, 'blog/publications.html')
 
 
-def post(request):
-	return render(request, 'blog/post.html')
+def publication(request, id):
+	post = Post.objects.get(id=id)
+	data = {
+			'publication': post
+			}
+	return render(request, 'blog/publication.html', data)
 
 
 def about(request):

@@ -5,9 +5,7 @@
 {% block content %}
     <div class="mainheading">
         <h1 class="sitetitle">Nataly Blog</h1>
-        <p class="lead">
-            Bootstrap theme, medium style, simply perfect for bloggers
-        </p>
+        <p class="lead">Harni Ohta Daybook</p>
     </div>
 
     <div>
@@ -20,14 +18,14 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-md-7 wrapthumbnail">
-                                <a href="/post">
+                                <a href="/publications/1">
                                     <img class="section-image" src="{{ section.avatar.url }}"/>
                                 </a>
                             </div>
                             <div class="col-md-5">
                                 <div class="card-block section-name">
                                     <h2 class="card-title">
-                                        <a href="/post">{{ section.name }}</a>
+                                        <a href="/publications">{{ section.name }}</a>
                                     </h2>
                                 </div>
                             </div>
@@ -46,16 +44,16 @@
             <div class="card-columns listrecent">
                 {% for publication in publications %}
                 <div class="card">
-                    <a href="/post">
+                    <a href="/publications/{{ publication.id }}">
                         <img class="publication-image" src="{{ publication.avatar.url }}"/>
                     </a>
                     <div class="card-block">
-                        <h2 class="card-title"><a href="/post">{{ publication.title }}</a></h2>
+                        <h2 class="card-title"><a href="/publications/{{ publication.id }}">{{ publication.title }}</a></h2>
                         <h4 class="card-text">{{ publication.annotation }}</h4>
                         <div class="metafooter">
                             <div class="wrapfooter">
 						<span class="post-date">{{ publication.created_at|date:'H:i d.m.Y' }}</span>
-                                <span class="post-read-more"><a href="post.html" title="Read Story"><svg
+                                <span class="post-read-more"><a href="/publications/{{ publication.id }}" title="Прочитать публикацию"><svg
                                         class="svgIcon-use"
                                         width="25"
                                         height="25"

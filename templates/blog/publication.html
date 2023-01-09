@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <h2>Post</h2>
+    <img src="{{ publication.avatar.url }}" alt="{{ publication.avatar.name }}"/>
+    <p>{{ publication.title }}</p>
+    <p>{{ publication.annotation }}</p>
+    <p>{{ publication.created_at|date:'H:i d.m.Y' }}</p>
+{% endblock content %}

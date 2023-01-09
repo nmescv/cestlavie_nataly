@@ -17,17 +17,16 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
 
-from blog.views.publications import home, publications, post, about
+from blog.views.publications import home, publications, publication, about
 from cestlavie_nataly import settings
 
 urlpatterns = [
 		path('harniohta/', admin.site.urls),
 		path('publications/', publications),
-		path('post/', post),
+		path('publications/<int:id>', publication),
 		path('about', about),
 		path('', home)
 		]
 
 if settings.DEBUG:
-	# urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
