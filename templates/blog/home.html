@@ -8,43 +8,41 @@
         <p class="lead">Harni Ohta Daybook</p>
     </div>
 
-    <div>
-        <section class="featured-posts">
-            <div class="section-title">
-                <h2><span>Разделы / Категории</span></h2>
-            </div>
-            <div class="card-columns listfeaturedtag">
-                {% for section in sections %}
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-7 wrapthumbnail">
-                                <a href="/posts/1">
-                                    <img class="section-image" src="{{ section.avatar.url }}"/>
-                                </a>
-                            </div>
-                            <div class="col-md-5">
-                                <div class="card-block section-name">
-                                    <h2 class="card-title">
-                                        <a href="/publications">{{ section.name }}</a>
-                                    </h2>
-                                </div>
+    <section class="featured-posts">
+        <div class="section-title">
+            <h2><span>Разделы / Категории</span></h2>
+        </div>
+        <div class="card-columns listfeaturedtag">
+            {% for section in sections %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-7 wrapthumbnail">
+                            <a href="/posts/1">
+                                <img class="section-image" src="{{ section.avatar.url }}"/>
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card-block section-name">
+                                <h2 class="card-title">
+                                    <a href="/publications">{{ section.name }}</a>
+                                </h2>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
-        </section>
-    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
 
-    <div>
-        <section class="last-publications">
-            <div class="section-title">
-                <h2><span>Последние публикации</span></h2>
-            </div>
-            <div class="last-publication listrecent">
-                <div class="row no-gutters">
-                    {% for publication in publications %}
-                        <div class="card col-md-4">
+    <section class="last-publications">
+        <div class="section-title">
+            <h2><span>Последние публикации</span></h2>
+        </div>
+        <div class="last-publication listrecent">
+            <div class="row">
+                {% for publication in publications %}
+                    <div class="col-md-4">
+                        <div class="card">
                             <a href="/posts/{{ publication.id }}">
                                 <img class="publication-image" src="{{ publication.avatar.url }}"/>
                             </a>
@@ -67,9 +65,9 @@
                                 </div>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 {% endblock content %}
