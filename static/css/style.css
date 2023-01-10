@@ -19,7 +19,7 @@
     justify-content: space-around;
 }
 
-.post-title {
+.post-section-title {
     display: flex;
     justify-content: center;
 }
@@ -50,6 +50,44 @@
     border-color: lightgray;
 }
 
+.post-last-publications-section {
+    margin: 20px;
+    padding: 20px;
+}
+
+.related-section-posts {
+    display: flex;
+    justify-content: space-between;
+}
+
 .post-description {
     padding: 10px;
+}
+
+.related-post {
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.5rem;
+}
+
+.related-post-image {
+    height: 100%;
+    width: 100%;
+}
+
+.post-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    height: 100%;
+
+}
+
+.post-card-title {
+    margin-bottom: .75rem
 }
