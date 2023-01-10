@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-md-7 wrapthumbnail">
-                                <a href="/publications/1">
+                                <a href="/posts/1">
                                     <img class="section-image" src="{{ section.avatar.url }}"/>
                                 </a>
                             </div>
@@ -45,17 +45,17 @@
                 <div class="row no-gutters">
                     {% for publication in publications %}
                         <div class="card col-md-4">
-                            <a href="/publications/{{ publication.id }}">
+                            <a href="/posts/{{ publication.id }}">
                                 <img class="publication-image" src="{{ publication.avatar.url }}"/>
                             </a>
                             <div class="card-block">
                                 <h2 class="card-title"><a
-                                        href="/publications/{{ publication.id }}">{{ publication.title }}</a></h2>
+                                        href="/posts/{{ publication.id }}">{{ publication.title }}</a></h2>
                                 <h4 class="card-text">{{ publication.annotation }}</h4>
                                 <div class="metafooter">
                                     <div class="wrapfooter">
                                         <span class="post-date">{{ publication.created_at|date:'H:i d.m.Y' }}</span>
-                                        <span class="post-read-more"><a href="/publications/{{ publication.id }}"
+                                        <span class="post-read-more"><a href="/posts/{{ publication.id }}"
                                                                         title="Прочитать публикацию"><svg
                                                 class="svgIcon-use"
                                                 width="25"

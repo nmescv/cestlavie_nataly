@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="post-page">
+        <section class="section-title">
+            <h2><span>Публикация</span></h2>
+        </section>
+
+        <div>
+            <div class="post-title">
+                <h4>{{ post.title }}</h4>
+            </div>
+
+            <div class="row post-description">
+                <div class="col-8">
+                    <img class="post-avatar" src="{{ post.avatar.url }}" alt="{{ post.avatar.name }}"/>
+                </div>
+                <div class="col-4">
+                    <p>{{ post.annotation }}</p>
+                    <p>{{ post.created_at|date:'H:i d.m.Y' }}</p>
+                </div>
+            </div>
+        </div>
+
+        {% for content in contents %}
+            {% if content.type == 'IMG' %}
+                <div class="post-image-content">
+                    <img src="{{ content.image.url }}" alt="{{ content.image.name }}"/>
+                </div>
+            {% else %}
+                <div class="post-text-content">
+                    <p>{{ content.text }}</p>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+{% endblock content %}

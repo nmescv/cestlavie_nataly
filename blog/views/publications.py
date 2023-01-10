@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from blog.models import Section, Post
+from django.core.paginator import Paginator
+from blog.models import Section, Post, Content
 
 
 # Create your views here.
@@ -15,16 +16,25 @@ def home(request):
 # def publications_by_section(request, category_id):
 
 
-def publications(request):
-	return render(request, 'blog/publications.html')
-
-
-def publication(request, id):
-	post = Post.objects.get(id=id)
+def posts(request):
+	post_list = Post.objects.all().order_by('-created_at')
+	paginator = Paginator(post_list, 2)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
 	data = {
-			'publication': post
+			'page_obj': page_obj
 			}
-	return render(request, 'blog/publication.html', data)
+	return render(request, 'blog/posts.html', data)
+
+
+def show_post(request, id):
+	post = Post.objects.get(id=id)
+	contents = Content.objects.filter(post=post)
+	data = {
+			'post': post,
+			'contents': contents
+			}
+	return render(request, 'blog/post.html', data)
 
 
 def about(request):

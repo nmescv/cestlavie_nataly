@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
 
-from blog.views.publications import home, publications, publication, about
+from blog.views.publications import home, posts, show_post, about
 from cestlavie_nataly import settings
 
 urlpatterns = [
 		path('harniohta/', admin.site.urls),
-		path('publications/', publications),
-		path('publications/<int:id>', publication),
+
+		path('posts/<int:id>', show_post),
+		path('posts/', posts),
+
 		path('about', about),
 		path('', home)
 		]

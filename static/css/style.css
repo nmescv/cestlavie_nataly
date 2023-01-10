@@ -18,3 +18,38 @@
     display: flex;
     justify-content: space-around;
 }
+
+.post-title {
+    display: flex;
+    justify-content: center;
+}
+
+.post-avatar {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.post-image-content {
+    margin: 10px;
+    padding: 10px;
+}
+
+.post-image-content img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.post-text-content {
+    text-align: justify;
+}
+
+.post-page {
+    padding: 20px;
+    border-left: solid;
+    border-right: solid;
+    border-color: lightgray;
+}
+
+.post-description {
+    padding: 10px;
+}
