@@ -34,25 +34,27 @@
         {% endfor %}
     </div>
 
-    <br>
-
     <div>
         <section class="last-publications">
             <div class="section-title">
-                <h4><span>Последние публикации по разделу &laquo;{{ post.section.name }}&raquo;</span></h4>
+                {% if post.section is null %}
+                    <h4><span>Последние публикации по разделу &laquo;Другое&raquo;</span></h4>
+                {% else %}
+                    <h4><span>Последние публикации по разделу &laquo;{{ post.section.name }}&raquo;</span></h4>
+                {% endif %}
             </div>
             <div class="last-publication listrecent">
                 <div class="row">
                     {% for post in related_posts %}
-                        <div class="col-md-4">
+                        <div class="col-md-4 post-frames">
                             <div class="card">
                                 <a href="/posts/{{ post.id }}">
-                                    <img class="publication-image" src="{{ post.avatar.url }}"/>
+                                    <img class="publication-image" src="{{ post.avatar.url }}"
+                                         alt="{{ post.avatar.name }}"/>
                                 </a>
-                                <div class="card-block">
-                                    <h2 class="card-title"><a
-                                            href="/posts/{{ post.id }}">{{ post.title }}</a></h2>
-                                    <h4 class="card-text">{{ post.annotation }}</h4>
+                                <div class="card-block post-card-block">
+                                    <p class="card-title"><span><a
+                                            href="/posts/{{ post.id }}">{{ post.title }}</span></a></p>
                                     <div class="metafooter">
                                         <div class="wrapfooter">
                                             <span class="post-date">{{ post.created_at|date:'H:i d.m.Y' }}</span>

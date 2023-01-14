@@ -41,7 +41,7 @@
         <div class="last-publication listrecent">
             <div class="row">
                 {% for publication in publications %}
-                    <div class="col-md-4">
+                    <div class="col-md-4 post-frames">
                         <div class="card">
                             <a href="/posts/{{ publication.id }}">
                                 <img class="publication-image" src="{{ publication.avatar.url }}"/>
@@ -49,7 +49,7 @@
                             <div class="card-block">
                                 <h2 class="card-title"><a
                                         href="/posts/{{ publication.id }}">{{ publication.title }}</a></h2>
-                                <h4 class="card-text">{{ publication.annotation }}</h4>
+{#                                <h4 class="card-text">{{ publication.annotation }}</h4>#}
                                 <div class="metafooter">
                                     <div class="wrapfooter">
                                         <span class="post-date">{{ publication.created_at|date:'H:i d.m.Y' }}</span>
