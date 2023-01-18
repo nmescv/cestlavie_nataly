@@ -17,20 +17,39 @@
                 <div class="card">
                     <div class="row">
                         <div class="col-md-7 wrapthumbnail">
-                            <a href="/posts/1">
+                            <a href="/posts/category/{{ section.url }}">
                                 <img class="section-image" src="{{ section.avatar.url }}"/>
                             </a>
                         </div>
                         <div class="col-md-5">
                             <div class="card-block section-name">
                                 <h2 class="card-title">
-                                    <a href="/publications">{{ section.name }}</a>
+                                    <a href="/posts/category/{{ section.url }}">{{ section.name }}</a>
                                 </h2>
                             </div>
                         </div>
                     </div>
                 </div>
             {% endfor %}
+
+            {% if no_category_posts_count > 0 %}
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-7 wrapthumbnail">
+                            <a href="/posts/category/others">
+                                <img class="section-image" src="{% static 'img/logo.png' %}"/>
+                            </a>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="card-block section-name">
+                                <h2 class="card-title">
+                                    <a href="/posts/category/others">Другие</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
     </section>
 
@@ -49,7 +68,7 @@
                             <div class="card-block">
                                 <h2 class="card-title"><a
                                         href="/posts/{{ publication.id }}">{{ publication.title }}</a></h2>
-{#                                <h4 class="card-text">{{ publication.annotation }}</h4>#}
+                                {#                                <h4 class="card-text">{{ publication.annotation }}</h4>#}
                                 <div class="metafooter">
                                     <div class="wrapfooter">
                                         <span class="post-date">{{ publication.created_at|date:'H:i d.m.Y' }}</span>

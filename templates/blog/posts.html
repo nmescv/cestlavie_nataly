@@ -1,28 +1,71 @@
 {% extends 'base.html' %}
 {% load static %}
+{% get_media_prefix %}
 
 {% block content %}
-    {% for post in page_obj %}
-        <div>
-            <p>{{ post.title }}</p>
+
+    <section class="last-publications">
+        <div class="section-title">
+            <h2><span>{{ section }}</span></h2>
         </div>
-    {% endfor %}
+
+
+        <div class="last-publication listrecent">
+
+            {% if page_obj %}
+                <div class="row">
+                    {% for post in page_obj %}
+                        <div class="col-md-4 post-frames">
+                            <div class="card">
+                                <a href="/posts/{{ post.id }}">
+                                    <img class="publication-image" src="{{ post.avatar.url }}"
+                                         alt="{{ post.avatar.name }}"/>
+                                </a>
+                                <div class="card-block">
+                                    <h2 class="card-title"><a
+                                            href="/posts/{{ post.id }}">{{ post.title }}</a></h2>
+                                    {#                                <h4 class="card-text">{{ publication.annotation }}</h4>#}
+                                    <div class="metafooter">
+                                        <div class="wrapfooter">
+                                            <span class="post-date">{{ post.created_at|date:'H:i d.m.Y' }}</span>
+                                            <span class="post-read-more"><a href="/posts/{{ post.id }}"
+                                                                            title="Прочитать публикацию"><svg
+                                                    class="svgIcon-use"
+                                                    width="25"
+                                                    height="25"
+                                                    viewBox="0 0 25 25"><path
+                                                    d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z"
+                                                    fill-rule="evenodd"/></svg></a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div>
+                    <p>Отсутствуют публикации по разделу {{ section.name }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </section>
 
     <div class="pagination">
-    <span class="step-links">
-        {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-        {% endif %}
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">В начало</a>
+                <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
+            {% endif %}
 
-        <span class="current">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            <span class="current">
+                 {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Вперед</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+            {% endif %}
         </span>
-
-        {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-        {% endif %}
-    </span>
-</div>
+    </div>
 {% endblock content %}

@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path
 
-from blog.views.publications import home, posts, show_post, about
+from blog.views.publications import home, posts, show_post, about, find_posts_by_other_categories, \
+	find_posts_by_category_url
 from cestlavie_nataly import settings
 
 urlpatterns = [
 		path('harniohta/', admin.site.urls),
 
+		path('posts/category/others', find_posts_by_other_categories),
+		path('posts/category/<str:url>', find_posts_by_category_url),
 		path('posts/<int:id>', show_post),
 		path('posts/', posts),
 
@@ -30,5 +33,5 @@ urlpatterns = [
 		path('', home)
 		]
 
-if settings.DEBUG:
-	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+# 	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

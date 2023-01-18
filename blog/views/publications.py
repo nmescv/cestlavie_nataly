@@ -6,16 +6,41 @@ from blog.models import Section, Post, Content
 
 # Create your views here.
 def home(request):
-	sections = Section.objects.all()
+	sections = Section.objects.all().filter(post=not None)
 	posts = Post.objects.all().order_by('-created_at')[:6]
-	data = {
+	posts_without_category_count = Post.objects.filter(section=None).count()
+	context = {
 			'sections'    : sections,
-			'publications': posts
+			'publications': posts,
+			'no_category_posts_count': posts_without_category_count
 			}
-	return render(request, 'blog/home.html', data)
+	return render(request, 'blog/home.html', context)
 
 
 # def publications_by_section(request, category_id):
+
+def find_posts_by_other_categories(request):
+	post_list = Post.objects.filter(section=None)
+	paginator = Paginator(post_list, 2)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	context = {
+			'page_obj': page_obj
+			}
+	return render(request, 'blog/posts.html', context)
+
+
+def find_posts_by_category_url(request, url):
+	section = Section.objects.get(url=url)
+	post_list = Post.objects.filter(section__url=url)
+	paginator = Paginator(post_list, 2)
+	page_number = request.GET.get('page')
+	page_obj = paginator.get_page(page_number)
+	context = {
+			'section': section,
+			'page_obj': page_obj
+			}
+	return render(request, 'blog/posts.html', context)
 
 
 def posts(request):
@@ -33,7 +58,6 @@ def show_post(request, id):
 
 	def show_last_post_by_section(request_post):
 		last_posts_by_section = Post.objects.filter(section=request_post.section).order_by('-created_at')[:4]
-		print(last_posts_by_section)
 		# if request_post in last_posts_by_section:
 		# 	last_posts_by_section.delete(request_post)
 		# 	return last_posts_by_section
