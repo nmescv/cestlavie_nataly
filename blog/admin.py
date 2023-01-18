@@ -12,8 +12,8 @@ from blog.forms import SectionForm
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
 
-	list_display = ('id', 'name', 'avatar', 'created_at', 'updated_at')
-	fields = ('name', 'avatar')
+	list_display = ('id', 'name', 'url', 'avatar', 'created_at', 'updated_at')
+	fields = ('name', 'avatar', 'url')
 
 	# class Meta:
 	# 	form = SectionForm

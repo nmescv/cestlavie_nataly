@@ -10,9 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+env = environ.Env()
+environ.Env.read_env('./.env')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -36,6 +41,8 @@ INSTALLED_APPS = [
 		'django.contrib.sessions',
 		'django.contrib.messages',
 		'django.contrib.staticfiles',
+		'storages',
+		# 'boto3'
 		]
 
 MIDDLEWARE = [
@@ -117,14 +124,23 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_ENDPOINT_URL = env('AWS_S3_ENDPOINT_URL')
+AWS_S3_REGION_NAME = env('AWS_S3_REGION_NAME')
+AWS_S3_FILE_OVERWRITE = True
+AWS_QUERYSTRING_AUTH = False
+AWS_DEFAULT_ACL = None
 
-AWS_ACCESS_KEY_ID = 'YCAJEex1zWQPUlEP6wzwt3NSm'
-AWS_SECRET_ACCESS_KEY = 'YCM832Yu_18vPCs2h1oGz4hTru4OO6o85ir1cof1'
-AWS_DEFAULT_REGION = 'ru-central1'
-ENDPOINT_URL = 'https://storage.yandexcloud.net'
-BUCKET_NAME = 'cestlavie-nataly-storage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
