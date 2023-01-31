@@ -57,11 +57,11 @@ def posts(request):
 def show_post(request, id):
 
 	def show_last_post_by_section(request_post):
-		last_posts_by_section = Post.objects.filter(section=request_post.section).order_by('-created_at')[:4]
-		# if request_post in last_posts_by_section:
-		# 	last_posts_by_section.delete(request_post)
-		# 	return last_posts_by_section
-		# else:
+		last_posts_by_section: list = Post.objects.filter(section=request_post.section).order_by('-created_at')[:4]
+		last_posts = list(last_posts_by_section)
+		if request_post in last_posts:
+			last_posts.remove(request_post)
+			return last_posts
 		return last_posts_by_section[:3]
 
 	post = Post.objects.get(id=id)

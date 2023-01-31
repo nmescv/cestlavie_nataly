@@ -1,17 +1,21 @@
 {% load static %}
 
-{% block navbar %}
+{#{% block navbar %}#}
     <nav class="navbar navbar-toggleable-md navbar-light bg-white fixed-top mediumnavigation">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
-                aria-expanded="false" aria-label="Toggle navigation">
+        <button type="button"
+                class="navbar-toggler navbar-toggler-right"
+                data-toggle="collapse"
+                data-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="true"
+                aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="{% static '/img/logo.png' %}" alt="logo"/>
             </a>
-            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a
@@ -54,4 +58,6 @@
             </div>
         </div>
     </nav>
-{% endblock navbar %}
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+
+{#{% endblock navbar %}#}
