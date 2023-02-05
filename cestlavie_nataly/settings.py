@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 		'django.contrib.messages',
 		'django.contrib.staticfiles',
 		'storages',
-		# 'boto3'
+		# 'boto3',
+		'gunicorn'
 		]
 
 MIDDLEWARE = [
